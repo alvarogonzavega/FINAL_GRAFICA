@@ -69,7 +69,7 @@ radiosity {
 #include "Basketball_Hoop_POV_geom.inc" //Geometry
  
 //CAMERA PoseRayCAMERA
-camera {
+/*camera {
         perspective
         up <0,1,0>
         right -x*image_width/image_height
@@ -81,6 +81,17 @@ camera {
         rotate <0,45,0> //yaw
         translate <0,1.98119962215424,0.247651405632496>
         }
+  */
+ 
+// perspective (default) camera
+camera {
+  location  <-.85, 5.0, -5.0>
+  look_at   <0.0, 5.0,  0.0>
+  right     x*image_width/image_height
+}  
+
+
+
  
 //PoseRay default Light attached to the camera
 light_source {
@@ -93,24 +104,85 @@ light_source {
               rotate <0,45,0> //rotation
              }
              
+
+ 
+             
+          
+//Carretera
+             
 plane { <0,1,0>, 0  hollow // normal vector, distance to zero ----
 
-        texture{ pigment{ color rgb<0.35,0.60, 0.00> }
-	         normal { bumps 0.25 scale 0.05 }
-                 finish { phong 1 }
+        texture{ pigment{ color rgb< 1, 1, 1>*0.15}
+                 normal { wrinkles 0.75 scale 0.1  }
+                 finish { phong 1 reflection{ 0.05 } }
                } // end of texture
         scale < 1, 1, 1>
-        rotate< 0,0,0> rotate<0,0,0>
         translate<2,-1,0>
       } // end of plane ------------------------------------------
+      
+//Acera
+
+difference{
+
+box { <-1.00, 0.00, -1.00>,< 1.00, 2.00, 1.00>   
+
+      texture { pigment{ color rgb<1.00, 1.00, 1.00>}  
+                finish { phong 1 reflection{ 0.00 metallic 0.00} } 
+              } // end of texture
+
+      scale <10,0.3,0.2> rotate<0,0,0> translate<8,2,6> 
+    } // end of box --------------------------------------
+ 
+box { <-1.00, 0.00, -1.00>,< 1.00, 2.00, 1.00>   
+
+      texture { pigment{ color rgb<0, 0, 0>}  
+                finish { phong 1 reflection{ 0.00 metallic 0.00} } 
+              } // end of texture
+
+      scale <1,0.3,10> rotate<0,0,0> translate<2.2,1.8,6> 
+    } // end of box --------------------------------------
+
+      
+}
+
+// ==== Standard POV-Ray Includes ====
+#include "colors.inc"	  // Standard Color definitions
+#include "textures.inc"	  // Standard Texture definitions
+#include "functions.inc"  // internal functions usable in user defined functions
+// linear prism in x-direction: from ... to ..., number of points (first = last)
+prism { -1.00 ,1.00 , 4
+        <-1.00, 0.00>, // first point
+        < 1.00, 0.00>, 
+        < 0.00, 1.50>,
+        <-1.00, 0.00>  // last point = first point!!!
+        rotate<-90,-90,0> //turns prism in x direction! Don't change this line!  
+
+      texture { pigment{ color White } 
+                finish { phong 1.0 }
+              } // end of texture
+
+       scale <6, 3, 20.00>
+       rotate<0,0,0> 
+       translate<-8, 2.00,25.80> 
+     } // end of prism --------------------------------------------------------
+     
+box { <-1.00, 0.00, -1.00>,< 1.00, 2.00, 1.00>   
+
+      texture { pigment{ color rgb<1.00, 1.00, 1.00>}  
+                finish { phong 1 reflection{ 0.00 metallic 0.00} } 
+              } // end of texture
+
+      scale <20,0.3,15> rotate<0,0,0> translate<18,2,21.2> 
+    } // end of box --------------------------------------
+     
+
              
  
-//Background
-background { color srgb 0.35  }
  
 //Assembled object that is contained in Basketball_Hoop_POV_geom.inc with no SSLT components
 object{
-      Basketball_Hoop_
+      Basketball_Hoop_ 
+      translate<-4,1,-2> rotate<0,120,0> scale 2
       }  
 
 #include "10487_basketball_v1_3dmax2011_it2_POV_geom.inc" //Geometry
@@ -118,7 +190,7 @@ object{
 //Assembled object that is contained in 10487_basketball_v1_3dmax2011_it2_POV_geom.inc with no SSLT components
 object{
       _10487_basketball_v1_3dmax2011_it2_
-      scale 0.01
+      scale 0.03 translate <8,3.2,13>
       }
       
 #include "CHALLENGER71_POV_geom.inc" //Geometry
@@ -126,9 +198,9 @@ object{
 //Assembled object that is contained in CHALLENGER71_POV_geom.inc with no SSLT components
 object{
       CHALLENGER71_
-      translate <3, 0, 3> scale 0.7 rotate<0,-180,0>
+      translate<4,0,-7.5> rotate<20,-180,0> scale 1.5
       }          
-
+            
 
  
 //restore the version used outside this file

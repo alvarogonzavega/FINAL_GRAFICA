@@ -68,27 +68,22 @@ radiosity {
 }
 #include "Basketball_Hoop_POV_geom.inc" //Geometry
  
-//CAMERA PoseRayCAMERA
-/*camera {
-        perspective
-        up <0,1,0>
-        right -x*image_width/image_height
-        location <0,4.21884749357559E-15,9.06267581456879>
-        look_at <0,4.21884749357559E-15,8.06267581456879>
-        angle 25.3496789954331 // horizontal FOV angle
-        rotate <0,0,0> //roll
-        rotate <-25,0,0> //pitch
-        rotate <0,45,0> //yaw
-        translate <0,1.98119962215424,0.247651405632496>
-        }
-  */
+ 
  
 // perspective (default) camera
 camera {
   location  <-.85, 5.0, -5.0>
   look_at   <0.0, 5.0,  0.0>
   right     x*image_width/image_height
-}  
+} /*
+
+// perspective (default) camera
+camera {
+  location  <0.0, 5.0, -100.0>
+  look_at   <0.0, 5.0,  0.0>
+  right     x*image_width/image_height
+}    */
+ 
 
 
 
@@ -124,6 +119,7 @@ plane { <0,1,0>, 0  hollow // normal vector, distance to zero ----
 
 difference{
 
+merge{ 
 box { <-1.00, 0.00, -1.00>,< 1.00, 2.00, 1.00>   
 
       texture { pigment{ color rgb<1.00, 1.00, 1.00>}  
@@ -132,6 +128,15 @@ box { <-1.00, 0.00, -1.00>,< 1.00, 2.00, 1.00>
 
       scale <10,0.3,0.2> rotate<0,0,0> translate<8,2,6> 
     } // end of box --------------------------------------
+ box { <-1.00, 0.00, -1.00>,< 1.00, 2.00, 1.00>   
+
+      texture { pigment{ color rgb<1.00, 1.00, 1>}  
+                finish { phong 1 reflection{ 0.00 metallic 0.00} } 
+              } // end of texture
+
+      scale <20,0.3,15> rotate<0,0,0> translate<18,2,21.2> 
+    } // end of box --------------------------------------   
+}    
  
 box { <-1.00, 0.00, -1.00>,< 1.00, 2.00, 1.00>   
 
@@ -165,16 +170,52 @@ prism { -1.00 ,1.00 , 4
        rotate<0,0,0> 
        translate<-8, 2.00,25.80> 
      } // end of prism --------------------------------------------------------
+
+     
+    
+// linear prism in z-direction: from ,to ,number of points (first = last)
+prism { -1.00 ,1.00 , 6
+       <-1.00, 0.00>,  // first point
+       < 1.00, 0.00>, 
+       < 1.00, 1.00>, 
+       < 0.00, 2.00>, 
+       <-1.00, 1.00>, 
+       <-1.00, 0.00>   // last point = first point!!!!
+       rotate<-90,0,0> scale<1,1,-1> //turns prism in z direction! Don't change this line! 
+
+                // scale your object first!!!
+         texture{ pigment{ brick color White                // color mortar
+                                 color rgb<0.8,0.25,0.1>    // color brick
+                           brick_size <0.25, 0.0525, 0.125> // format in x ,y and z- direction 
+                           mortar 0.01                      // size of the mortar 
+                         } // end of pigment
+                  normal {wrinkles 0.75 scale 0.01}
+                  finish {ambient 0.15 diffuse 0.95 phong 0.2} 
+                  scale 3
+                  rotate<0,0,0>  translate<0.01, 0.04,-0.10>  scale 0.13
+               } // end of texture
+       scale <22.00,20.00,1.00>       
+       rotate <0,0,0> 
+       translate <7,1,25.00> 
+     } // end of prism --------------------------------------------------------
      
 box { <-1.00, 0.00, -1.00>,< 1.00, 2.00, 1.00>   
 
-      texture { pigment{ color rgb<1.00, 1.00, 1.00>}  
+      texture { pigment{ color 0}  
                 finish { phong 1 reflection{ 0.00 metallic 0.00} } 
               } // end of texture
 
-      scale <20,0.3,15> rotate<0,0,0> translate<18,2,21.2> 
+      scale <5,5,1> rotate<0,0,0> translate<-9,6,24.8> 
     } // end of box --------------------------------------
      
+
+#include "trash_can_POV_geom.inc" //Geometry
+    
+//Assembled object that is contained in trash_can_POV_geom.inc with no SSLT components
+object{
+      trash_can_
+      scale 0.7 translate<5,2,0>
+      }
 
              
  
