@@ -92,6 +92,18 @@ light_source {
               rotate <-25,0,0> //elevation
               rotate <0,45,0> //rotation
              }
+             
+plane { <0,1,0>, 0  hollow // normal vector, distance to zero ----
+
+        texture{ pigment{ color rgb<0.35,0.60, 0.00> }
+	         normal { bumps 0.25 scale 0.05 }
+                 finish { phong 1 }
+               } // end of texture
+        scale < 1, 1, 1>
+        rotate< 0,0,0> rotate<0,0,0>
+        translate<2,-1,0>
+      } // end of plane ------------------------------------------
+             
  
 //Background
 background { color srgb 0.35  }
@@ -107,7 +119,15 @@ object{
 object{
       _10487_basketball_v1_3dmax2011_it2_
       scale 0.01
-      }    
+      }
+      
+#include "CHALLENGER71_POV_geom.inc" //Geometry
+
+//Assembled object that is contained in CHALLENGER71_POV_geom.inc with no SSLT components
+object{
+      CHALLENGER71_
+      translate <3, 0, 3> scale 0.7 rotate<0,-180,0>
+      }          
 
 
  

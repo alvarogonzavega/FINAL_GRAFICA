@@ -279,7 +279,7 @@ average pigment_map{
  
 //==================================================
 //Map definitions
-#declare p_map1=pigment {image_map{jpeg "C:/Users/Alvaro/Downloads/10487_basketball_V2_L3.123c19e2c862-0a27-4749-9131-0830b7bfd853/10487_basketball_diffuse.jpg"   transmit all 0 } }
+#declare p_map1=pigment {image_map{jpeg "C:/Users/Alvaro/Desktop/FINAL-100363686/10487_basketball_V2_L3.123c19e2c862-0a27-4749-9131-0830b7bfd853/10487_basketball_diffuse.jpg"   transmit all 0 } }
  
 //==================================================
 //Material definitions
