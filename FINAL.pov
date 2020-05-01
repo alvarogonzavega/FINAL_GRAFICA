@@ -81,14 +81,17 @@ radiosity {
         rotate <0,45,0> //yaw
         translate <0,1.98119962215424,0.247651405632496>
         }
- */
+  */
  
 // perspective (default) camera
 camera {
   location  <-.85, 5.0, -5.0>
   look_at   <0.0, 5.0,  0.0>
   right     x*image_width/image_height
-}
+}  
+
+
+
  
 //PoseRay default Light attached to the camera
 light_source {
@@ -158,7 +161,7 @@ prism { -1.00 ,1.00 , 4
                 finish { phong 1.0 }
               } // end of texture
 
-       scale <6, 3.5, 20.00>
+       scale <6, 3, 20.00>
        rotate<0,0,0> 
        translate<-8, 2.00,25.80> 
      } // end of prism --------------------------------------------------------
@@ -190,14 +193,14 @@ object{
       scale 0.03 translate <8,3.2,13>
       }
       
-/*#include "CHALLENGER71_POV_geom.inc" //Geometry
+#include "CHALLENGER71_POV_geom.inc" //Geometry
 
 //Assembled object that is contained in CHALLENGER71_POV_geom.inc with no SSLT components
 object{
       CHALLENGER71_
-      translate <3, 0, 3> scale 0.7 rotate<0,-180,0>
+      translate<4,0,-7.5> rotate<20,-180,0> scale 1.5
       }          
-            */
+            
 
  
 //restore the version used outside this file
