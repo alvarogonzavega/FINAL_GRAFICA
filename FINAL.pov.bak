@@ -184,16 +184,15 @@ prism { -1.00 ,1.00 , 6
        rotate<-90,0,0> scale<1,1,-1> //turns prism in z direction! Don't change this line! 
 
                 // scale your object first!!!
-         texture{ pigment{ brick color White                // color mortar
-                                 color rgb<0.8,0.25,0.1>    // color brick
-                           brick_size <0.25, 0.0525, 0.125> // format in x ,y and z- direction 
-                           mortar 0.01                      // size of the mortar 
-                         } // end of pigment
-                  normal {wrinkles 0.75 scale 0.01}
-                  finish {ambient 0.15 diffuse 0.95 phong 0.2} 
-                  scale 3
-                  rotate<0,0,0>  translate<0.01, 0.04,-0.10>  scale 0.13
-               } // end of texture
+         texture{pigment{image_map
+         {
+          png "graff.png"}
+          
+          scale <2.5, 1, 1> translate <-3,0,0>
+          
+          }
+          
+          } // end of texture
        scale <22.00,20.00,1.00>       
        rotate <0,0,0> 
        translate <7,1,25.00> 
@@ -201,9 +200,15 @@ prism { -1.00 ,1.00 , 6
      
 box { <-1.00, 0.00, -1.00>,< 1.00, 2.00, 1.00>   
 
-      texture { pigment{ color 0}  
-                finish { phong 1 reflection{ 0.00 metallic 0.00} } 
-              } // end of texture
+       texture{pigment{image_map
+         {
+          png "puerta.png"}
+          
+            rotate <0,0,-90>  scale 2
+          
+          }
+          
+          } // end of texture
 
       scale <5,5,1> rotate<0,0,0> translate<-9,6,24.8> 
     } // end of box --------------------------------------
@@ -214,7 +219,7 @@ box { <-1.00, 0.00, -1.00>,< 1.00, 2.00, 1.00>
 //Assembled object that is contained in trash_can_POV_geom.inc with no SSLT components
 object{
       trash_can_
-      scale 0.7 translate<5,2,0>
+      scale 0.5 translate<5,2,0>
       }
 
              
@@ -239,7 +244,7 @@ object{
 //Assembled object that is contained in CHALLENGER71_POV_geom.inc with no SSLT components
 object{
       CHALLENGER71_
-      translate<4,0,-7.5> rotate<20,-180,0> scale 1.5
+      translate<3.8,-0.5,-7> rotate<20,-180,0> scale 2.2
       }          
             
 
