@@ -132,12 +132,12 @@ light_source {
              
 // general light definition
 light_source {
-  <-10, 10, 10>      // position of the light source
-  color rgb< 1.0, 0.35, 0.0>*0.1      // color of the light
+  <-20, 10, 0>      // position of the light source
+  color rgb< 1.0, 0.35, 0.0>*0.25      // color of the light
   // spotlight
   // cylinder
    parallel
-   point_at <0,0,0>
+   point_at <10,10,0>
   // area_light <AXIS1>, <AXIS2>, SIZE1, SIZE2
   // (---for spotlight/cylinder---)
   // radius FLOAT
@@ -208,10 +208,25 @@ box { <-1.00, 0.00, -1.00>,< 1.00, 2.00, 1.00>
           
           }
           
+          
           } // end of texture
 
       scale <20,0.3,15> rotate<0,0,0> translate<18,2,21.2> 
-    } // end of box --------------------------------------   
+    } // end of box -------------------------------------- 
+    
+    //Assembled object that is contained in Basketball_Hoop_POV_geom.inc with no SSLT components
+object{
+      Basketball_Hoop_ 
+      translate<-6,1,-0.5> rotate<0,90,0> scale 2
+      }  
+
+#include "10487_basketball_v1_3dmax2011_it2_POV_geom.inc" //Geometry
+
+//Assembled object that is contained in 10487_basketball_v1_3dmax2011_it2_POV_geom.inc with no SSLT components
+object{
+      _10487_basketball_v1_3dmax2011_it2_
+      scale 0.03 translate <8,3.2,13>
+      }  
 }    
  
 box { <-1.00, 0.00, -1.00>,< 1.00, 2.00, 1.00>   
@@ -222,9 +237,15 @@ box { <-1.00, 0.00, -1.00>,< 1.00, 2.00, 1.00>
 
       scale <1,0.3,10> rotate<0,0,0> translate<2.2,1.8,6> 
     } // end of box --------------------------------------
-
+  
+  
+  translate<-2,0,0>
       
-}
+} 
+
+
+
+
 
 
 // linear prism in x-direction: from ... to ..., number of points (first = last)
@@ -236,19 +257,18 @@ prism { -1.00 ,1.00 , 4
         rotate<-90,-90,0> //turns prism in x direction! Don't change this line!  
 
 //------------------------------------------------------------- 
-             texture{ pigment{ color rgb< 1, 1, 1>*0.35}
+                     texture{ pigment{ color rgb< 1, 1, 1>*0.35}
                  normal { granite 0.75 scale 0.1  }
                  finish { phong 1 reflection{ 0.05 } }
                }
 
 //------------------------------------------------------------ 
 
-       scale <6, 3, 20.00>
+       scale <6, 0.5, 20.00>
        rotate<0,0,0> 
-       translate<-8, 2.00,25.80> 
+       translate<-10, 2.00,25.80> 
      } // end of prism --------------------------------------------------------
-
-     
+ 
     
 // linear prism in z-direction: from ,to ,number of points (first = last)
 prism { -1.00 ,1.00 , 6
@@ -265,7 +285,7 @@ prism { -1.00 ,1.00 , 6
          {
           png "graff.png"}
           
-          scale <2.5, 0.98, 1> translate <-3,0,0>
+          scale <3, 1.1, 1> translate <-1,0,0>
           
           }
           
@@ -281,13 +301,13 @@ box { <-1.00, 0.00, -1.00>,< 1.00, 2.00, 1.00>
          {
           png "puerta.png"}
           
-scale <3,2,0> translate<1,0,0>
+scale <3,2,0> translate<1,-4,0>
           
           }
           
           } // end of texture
 
-      scale <5,5.7,1> rotate<0,0,0> translate<-9,6,24.8> 
+      scale <5,5.7,1> rotate<0,0,0> translate<-9,2.75,24.8> 
     } // end of box --------------------------------------
      
 
@@ -301,29 +321,24 @@ object{
 
              
  
- 
-//Assembled object that is contained in Basketball_Hoop_POV_geom.inc with no SSLT components
-object{
-      Basketball_Hoop_ 
-      translate<-6,1,-0.5> rotate<0,90,0> scale 2
-      }  
-
-#include "10487_basketball_v1_3dmax2011_it2_POV_geom.inc" //Geometry
-
-//Assembled object that is contained in 10487_basketball_v1_3dmax2011_it2_POV_geom.inc with no SSLT components
-object{
-      _10487_basketball_v1_3dmax2011_it2_
-      scale 0.03 translate <8,3.2,13>
-      }
       
 #include "CHALLENGER71_POV_geom.inc" //Geometry
 
 //Assembled object that is contained in CHALLENGER71_POV_geom.inc with no SSLT components
 object{
       CHALLENGER71_
-      translate<3.8,-0.5,-7> rotate<20,-180,0> scale 2.2
+      translate<3.8,0.75,-7> rotate<2,-180,0> scale 2.2
       }          
             
+
+ light_source {
+ <-20,10,0>
+ color rgb<1.0, 0.4, 0.75>*0.2
+  // put this inside a light_source to make it parallel
+  parallel
+  point_at <10, 10, 0>
+
+   }
 
 
 //restore the version used outside this file

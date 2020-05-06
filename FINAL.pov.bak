@@ -97,7 +97,72 @@ light_source {
               rotate <0,0,0> //roll
               rotate <-25,0,0> //elevation
               rotate <0,45,0> //rotation
-             }
+             } 
+
+
+// general light definition
+light_source {
+  <10, 10, 10>      // position of the light source
+  color rgb 0.5     // color of the light
+  // spotlight
+  // cylinder
+  // parallel
+  // area_light <AXIS1>, <AXIS2>, SIZE1, SIZE2
+  // (---for spotlight/cylinder---)
+  // radius FLOAT
+  // falloff FLOAT
+  // tightness FLOAT
+  // point_at <VECTOR>   // for spotlight/cylinder/parallel
+  // (---for area_light---)
+  // adaptive FLOAT
+  // jitter FLOAT
+  // circular
+  // orient
+  // (---other modifiers---)
+  // looks_like { OBJECT }
+   fade_distance 20
+   fade_power 5
+  // media_attenuation BOOL
+  // media_interaction BOOL
+  // shadowless
+}
+
+
+             
+             
+// general light definition
+light_source {
+  <-10, 10, 10>      // position of the light source
+  color rgb< 1.0, 0.35, 0.0>*0.1      // color of the light
+  // spotlight
+  // cylinder
+   parallel
+   point_at <0,0,0>
+  // area_light <AXIS1>, <AXIS2>, SIZE1, SIZE2
+  // (---for spotlight/cylinder---)
+  // radius FLOAT
+  // falloff FLOAT
+  // tightness FLOAT
+  // point_at <VECTOR>   // for spotlight/cylinder/parallel
+  // (---for area_light---)
+  // adaptive FLOAT
+  // jitter FLOAT
+  // circular
+  // orient
+  // (---other modifiers---)
+  // looks_like { OBJECT }
+  // fade_distance FLOAT
+  // fade_power FLOAT
+  // media_attenuation BOOL
+  // media_interaction BOOL
+  // shadowless
+}
+// ==== Standard POV-Ray Includes ====
+#include "colors.inc"	  // Standard Color definitions
+#include "textures.inc"	  // Standard Texture definitions
+#include "functions.inc"  // internal functions usable in user defined functions
+
+             
              
 
  
@@ -116,23 +181,34 @@ plane { <0,1,0>, 0  hollow // normal vector, distance to zero ----
       } // end of plane ------------------------------------------
       
 //Acera
+#include "stones.inc"
 
 difference{
 
 merge{ 
 box { <-1.00, 0.00, -1.00>,< 1.00, 2.00, 1.00>   
 
-      texture { pigment{ color rgb<1.00, 1.00, 1.00>}  
-                finish { phong 1 reflection{ 0.00 metallic 0.00} } 
-              } // end of texture
+       texture{ T_Stone10    
+                normal { agate 0.25 scale 0.15 rotate<0,0,0> }
+                finish { phong 1 } 
+                rotate<0,0,0> scale 0.5 translate<0,0,0>
+              } // end of texture 
+
+
 
       scale <10,0.3,0.2> rotate<0,0,0> translate<8,2,6> 
     } // end of box --------------------------------------
  box { <-1.00, 0.00, -1.00>,< 1.00, 2.00, 1.00>   
 
-      texture { pigment{ color rgb<1.00, 1.00, 1>}  
-                finish { phong 1 reflection{ 0.00 metallic 0.00} } 
-              } // end of texture
+         texture{pigment{image_map
+         {
+          png "cancha.png"}
+          
+    rotate<90,-90,0>   translate <-0.1,0,0>
+          
+          }
+          
+          } // end of texture
 
       scale <20,0.3,15> rotate<0,0,0> translate<18,2,21.2> 
     } // end of box --------------------------------------   
@@ -150,10 +226,7 @@ box { <-1.00, 0.00, -1.00>,< 1.00, 2.00, 1.00>
       
 }
 
-// ==== Standard POV-Ray Includes ====
-#include "colors.inc"	  // Standard Color definitions
-#include "textures.inc"	  // Standard Texture definitions
-#include "functions.inc"  // internal functions usable in user defined functions
+
 // linear prism in x-direction: from ... to ..., number of points (first = last)
 prism { -1.00 ,1.00 , 4
         <-1.00, 0.00>, // first point
@@ -162,9 +235,13 @@ prism { -1.00 ,1.00 , 4
         <-1.00, 0.00>  // last point = first point!!!
         rotate<-90,-90,0> //turns prism in x direction! Don't change this line!  
 
-      texture { pigment{ color White } 
-                finish { phong 1.0 }
-              } // end of texture
+//------------------------------------------------------------- 
+             texture{ pigment{ color rgb< 1, 1, 1>*0.35}
+                 normal { granite 0.75 scale 0.1  }
+                 finish { phong 1 reflection{ 0.05 } }
+               }
+
+//------------------------------------------------------------ 
 
        scale <6, 3, 20.00>
        rotate<0,0,0> 
@@ -188,7 +265,7 @@ prism { -1.00 ,1.00 , 6
          {
           png "graff.png"}
           
-          scale <2.5, 1, 1> translate <-3,0,0>
+          scale <2.5, 0.98, 1> translate <-3,0,0>
           
           }
           
@@ -204,13 +281,13 @@ box { <-1.00, 0.00, -1.00>,< 1.00, 2.00, 1.00>
          {
           png "puerta.png"}
           
-            rotate <0,0,-90>  scale 2
+scale <3,2,0> translate<1,0,0>
           
           }
           
           } // end of texture
 
-      scale <5,5,1> rotate<0,0,0> translate<-9,6,24.8> 
+      scale <5,5.7,1> rotate<0,0,0> translate<-9,6,24.8> 
     } // end of box --------------------------------------
      
 
@@ -228,7 +305,7 @@ object{
 //Assembled object that is contained in Basketball_Hoop_POV_geom.inc with no SSLT components
 object{
       Basketball_Hoop_ 
-      translate<-4,1,-2> rotate<0,120,0> scale 2
+      translate<-6,1,-0.5> rotate<0,90,0> scale 2
       }  
 
 #include "10487_basketball_v1_3dmax2011_it2_POV_geom.inc" //Geometry
@@ -248,7 +325,7 @@ object{
       }          
             
 
- 
+
 //restore the version used outside this file
 #version Temp_version;
 //==================================================
