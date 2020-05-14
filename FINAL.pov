@@ -55,15 +55,14 @@ global_settings {
 radiosity {
      pretrace_start p_start
      pretrace_end   p_end_final
-     count 800
+     count 1000
      nearest_count 5
      error_bound 0.5
-     recursion_limit 1
+     recursion_limit 3
      low_error_factor .5
-     gray_threshold 0.0
-     minimum_reuse 0.015
+     gray_threshold 0.2
+     minimum_reuse 0.15
      brightness 1
-     adc_bailout 0.01/2
 }
 }
 #include "Basketball_Hoop_POV_geom.inc" //Geometry
@@ -128,16 +127,13 @@ light_source {
 }
 
 
-             
-             
 // general light definition
 light_source {
-  <-20, 10, 0>      // position of the light source
-  color rgb< 1.0, 0.35, 0.0>*0.25      // color of the light
+  <10, 10, 0>      // position of the light source
+  color rgb 1.0     // color of the light
   // spotlight
   // cylinder
-   parallel
-   point_at <10,10,0>
+  // parallel
   // area_light <AXIS1>, <AXIS2>, SIZE1, SIZE2
   // (---for spotlight/cylinder---)
   // radius FLOAT
@@ -157,6 +153,13 @@ light_source {
   // media_interaction BOOL
   // shadowless
 }
+
+
+
+
+
+             
+           
 // ==== Standard POV-Ray Includes ====
 #include "colors.inc"	  // Standard Color definitions
 #include "textures.inc"	  // Standard Texture definitions
@@ -172,10 +175,11 @@ light_source {
              
 plane { <0,1,0>, 0  hollow // normal vector, distance to zero ----
 
-        texture{ pigment{ color rgb< 1, 1, 1>*0.15}
-                 normal { wrinkles 0.75 scale 0.1  }
-                 finish { phong 1 reflection{ 0.05 } }
-               } // end of texture
+             texture{ pigment{ color rgb<0.15,0.15,0.15>} 
+                normal { bozo 8.5 scale 0.050 }
+                finish { phong 1 reflection{ 0.05 } }
+              } // end of texture
+
         scale < 1, 1, 1>
         translate<2,-1,0>
       } // end of plane ------------------------------------------
@@ -225,7 +229,7 @@ object{
 //Assembled object that is contained in 10487_basketball_v1_3dmax2011_it2_POV_geom.inc with no SSLT components
 object{
       _10487_basketball_v1_3dmax2011_it2_
-      scale 0.03 translate <8,3.2,13>
+      scale 0.025 translate <8,3.1,13>
       }  
 }    
  
@@ -327,18 +331,19 @@ object{
 //Assembled object that is contained in CHALLENGER71_POV_geom.inc with no SSLT components
 object{
       CHALLENGER71_
-      translate<3.8,0.75,-7> rotate<2,-180,0> scale 2.2
+      translate<3.2,0.6,-5> rotate<2,-180,0> scale 3
       }          
             
 
- light_source {
+ /*light_source {
  <-20,10,0>
  color rgb<1.0, 0.4, 0.75>*0.2
   // put this inside a light_source to make it parallel
   parallel
   point_at <10, 10, 0>
 
-   }
+   }     */
+       
 
 
 //restore the version used outside this file
