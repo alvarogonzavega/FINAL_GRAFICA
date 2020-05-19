@@ -221,7 +221,7 @@ box { <-1.00, 0.00, -1.00>,< 1.00, 2.00, 1.00>
     //Assembled object that is contained in Basketball_Hoop_POV_geom.inc with no SSLT components
 object{
       Basketball_Hoop_ 
-      translate<-6,1,-0.5> rotate<0,90,0> scale 2
+      translate<-6,1,-0.5> rotate<0,90,0> scale <2, 2.5,2>
       }  
 
 #include "10487_basketball_v1_3dmax2011_it2_POV_geom.inc" //Geometry
@@ -229,7 +229,7 @@ object{
 //Assembled object that is contained in 10487_basketball_v1_3dmax2011_it2_POV_geom.inc with no SSLT components
 object{
       _10487_basketball_v1_3dmax2011_it2_
-      scale 0.025 translate <8,3.1,13>
+      scale 0.03 translate <8,3.2,13>
       }  
 }    
  
